@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- Report theme -->
+        <theme>dark</theme>
+        
+        <!-- Document encoding -->
+        <encoding>UTF-8</encoding>
+        
+        <!-- Title of the report -->
+        <documentTitle>Mobile Automation Test Report</documentTitle>
+        
+        <!-- Name of the report -->
+        <reportName>Mobile Test Execution Report</reportName>
+        
+        <!-- Timestamp format -->
+        <timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
+        
+        <!-- CSS customization -->
+        <css>
+            .test-name {
+                font-weight: bold;
+            }
+        </css>
+        
+        <!-- JavaScript customization -->
+        <js>
+        </js>
+    </configuration>
+</extentreports>

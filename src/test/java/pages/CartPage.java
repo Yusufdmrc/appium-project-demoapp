@@ -30,6 +30,10 @@ public class CartPage extends BasePage {
     @iOSXCUITFindBy(accessibility = "remove item")
     private WebElement removeItemButton;
 
+    @AndroidFindBy(xpath = "(//android.widget.TextView[@content-desc='counter'])[1]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='counter'])[1]")
+    private WebElement firstItemQuantity;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='No Items']")
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='No Items']")
     private WebElement noItemsMessage;
@@ -66,5 +70,16 @@ public class CartPage extends BasePage {
 
     public boolean isCartEmpty() {
         return elementHelper.isDisplayed(noItemsMessage);
+    }
+
+    public String getFirstItemQuantity() {
+        if (elementHelper.isDisplayed(firstItemQuantity)) {
+            return elementHelper.getText(firstItemQuantity);
+        }
+        return "0";
+    }
+
+    public boolean hasItems() {
+        return !cartItems.isEmpty();
     }
 }

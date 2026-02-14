@@ -7,7 +7,7 @@ Feature: Login Functionality
   Background:
     Given user is on products page
 
-  @positive @aa
+  @positive
   Scenario Outline: Successful login with valid users
     When user opens menu
     And user clicks on login menu item

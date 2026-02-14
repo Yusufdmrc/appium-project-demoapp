@@ -10,32 +10,32 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class ProductsPage extends BasePage {
 
-    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='container header']/android.widget.TextView")
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='container header']/XCUIElementTypeStaticText")
+    @AndroidFindBy(id = "/com.saucelabs.mydemoapp.android:id/productTV")
+    @iOSXCUITFindBy(id = "/com.saucelabs.mydemoapp.android:id/productTV")
     private WebElement pageTitle;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[contains(@content-desc, 'store item')]")
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@name, 'store item')]")
     private List<WebElement> productItems;
 
-    @AndroidFindBy(xpath = "(//android.view.ViewGroup[contains(@content-desc, 'store item')])[1]")
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[contains(@name, 'store item')])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Product Image\"])[1]")
+    @iOSXCUITFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Product Image\"])[1]")
     private WebElement firstProduct;
 
-    @AndroidFindBy(accessibility = "open menu")
-    @iOSXCUITFindBy(accessibility = "open menu")
+    @AndroidFindBy(accessibility = "View menu")
+    @iOSXCUITFindBy(accessibility = "View menu")
     private WebElement menuButton;
 
-    @AndroidFindBy(accessibility = "menu item log out")
-    @iOSXCUITFindBy(accessibility = "menu item log out")
+    @AndroidFindBy(accessibility = "Logout Menu Item")
+    @iOSXCUITFindBy(accessibility = "Logout Menu Item")
     private WebElement logoutMenuItem;
 
-    @AndroidFindBy(accessibility = "Log In")
-    @iOSXCUITFindBy(accessibility = "Log In")
+    @AndroidFindBy(accessibility = "Login Menu Item")
+    @iOSXCUITFindBy(accessibility = "Login Menu Item")
     private WebElement logInButton;
 
-    @AndroidFindBy(accessibility = "cart badge")
-    @iOSXCUITFindBy(accessibility = "cart badge")
+    @AndroidFindBy(accessibility = "Displays number of items in your cart")
+    @iOSXCUITFindBy(accessibility = "Displays number of items in your cart")
     private WebElement cartBadge;
 
     public ProductsPage(AppiumDriver driver) {
@@ -77,5 +77,16 @@ public class ProductsPage extends BasePage {
     public void openCart() {
         elementHelper.click(cartBadge);
         elementHelper.waitForSeconds(1);
+    }
+
+    public String getCartBadgeNumber() {
+        if (elementHelper.isDisplayed(cartBadge)) {
+            return elementHelper.getText(cartBadge);
+        }
+        return "0";
+    }
+
+    public boolean isCartBadgeDisplayed() {
+        return elementHelper.isDisplayed(cartBadge);
     }
 }

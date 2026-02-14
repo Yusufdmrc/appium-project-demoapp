@@ -12,6 +12,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -54,6 +55,51 @@ public class Hooks {
         System.out.println("========================================");
         
         DriverFactory.quitDriver();
+    }
+
+    @AfterAll
+    public static void printReportLinks() {
+        System.out.println("\n");
+        System.out.println("╔════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                    TEST EXECUTION COMPLETED                            ║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("\n📊 TEST REPORTS:");
+        System.out.println("─────────────────────────────────────────────────────────────────────────");
+        
+        String projectPath = System.getProperty("user.dir");
+        
+        // Extent Report
+        File extentReport = new File(projectPath + "/target/extent-reports/ExtentReport.html");
+        if (extentReport.exists()) {
+            System.out.println("✅ Extent Report:");
+            System.out.println("   📁 " + extentReport.getAbsolutePath());
+            System.out.println("   🔗 file://" + extentReport.getAbsolutePath());
+        }
+        
+        // Cucumber HTML Report
+        File cucumberReport = new File(projectPath + "/target/cucumber-reports/cucumber-html-reports/overview-features.html");
+        if (cucumberReport.exists()) {
+            System.out.println("\n✅ Cucumber HTML Report:");
+            System.out.println("   📁 " + cucumberReport.getAbsolutePath());
+            System.out.println("   🔗 file://" + cucumberReport.getAbsolutePath());
+        }
+        
+        // Standard Cucumber Report
+        File standardCucumberReport = new File(projectPath + "/target/cucumber-reports/cucumber.html");
+        if (standardCucumberReport.exists()) {
+            System.out.println("\n✅ Standard Cucumber Report:");
+            System.out.println("   📁 " + standardCucumberReport.getAbsolutePath());
+            System.out.println("   🔗 file://" + standardCucumberReport.getAbsolutePath());
+        }
+        
+        // Allure Report Info
+        System.out.println("\n✅ Allure Report:");
+        System.out.println("   💡 Run command: mvn allure:serve");
+        System.out.println("   📁 Results: " + projectPath + "/allure-results");
+        
+        System.out.println("\n─────────────────────────────────────────────────────────────────────────");
+        System.out.println("💡 TIP: Copy and paste the file:// links above to your browser");
+        System.out.println("─────────────────────────────────────────────────────────────────────────\n");
     }
 
     public static class ScreenshotUtils {

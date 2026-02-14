@@ -28,15 +28,17 @@ test-output/
 allure-results/
 allure-report/
 screenshots/
+cucumber-reports/
+extent-reports/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Ignore test config files
+# Ignore test config files (but keep .example files)
 /src/test/resources/config/*.properties
+!/src/test/resources/config/*.properties.example
 /src/test/resources/config/*.key
-/src/test/resources/*.properties
 
 apk
 /src/test/resources/apps/*.apk

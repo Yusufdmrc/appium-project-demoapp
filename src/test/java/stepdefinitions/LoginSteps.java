@@ -73,6 +73,15 @@ public class LoginSteps {
             "Error message is not displayed");
     }
 
+    @Then("user should see error message {string}")
+    public void userShouldSeeErrorMessage(String expectedError) {
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), 
+            "Error message is not displayed");
+        String actualMessage = loginPage.getErrorMessage();
+        Assert.assertTrue(actualMessage.contains(expectedError), 
+            "Expected error message to contain: '" + expectedError + "' but got: '" + actualMessage + "'");
+    }
+
     @Then("error message should contain {string}")
     public void errorMessageShouldContain(String expectedText) {
         String actualMessage = loginPage.getErrorMessage();

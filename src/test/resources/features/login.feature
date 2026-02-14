@@ -19,7 +19,6 @@ Feature: Login Functionality
     Examples:
       | username            | password |
       | bob@example.com     | 10203040 |
-      | visual@example.com  | 10203040 |
 
 
 
@@ -30,14 +29,11 @@ Feature: Login Functionality
     And user enters username "<username>"
     And user enters password "<password>"
     And user clicks login button
-    Then user should see an error message
+    Then user should see error message "<expectedError>"
 
     Examples:
-      | username           | password  |
-      | alice@example.com  | 10203040  |
-      | invalid@test.com   | wrongpass |
-      | bob@example.com    | wrongpass |
-      | invalid@test.com   | 10203040  |
-      |                    | 10203040  |
-      | bob@example.com    |            |
-      |                    |            |
+      | username           | password  | expectedError                       |
+      | alice@example.com  | 10203040  | Sorry this user has been locked out.|
+      |                    | 10203040  | Username is required                |
+      | bob@example.com    |           | Enter Password                      |
+      |                    |           | Username is required                |

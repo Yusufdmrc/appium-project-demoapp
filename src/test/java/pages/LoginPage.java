@@ -32,9 +32,17 @@ public class LoginPage extends BasePage {
     @iOSXCUITFindBy(id = "com.saucelabs.mydemoapp.android:id/productTV")
     private WebElement productHeaderTitle;
 
-    @AndroidFindBy(accessibility = "generic-error-message")
-    @iOSXCUITFindBy(accessibility = "generic-error-message")
-    private WebElement errorMessage;
+    @AndroidFindBy(id = "com.saucelabs.mydemoapp.android:id/nameErrorTV")
+    @iOSXCUITFindBy(accessibility = "com.saucelabs.mydemoapp.android:id/nameErrorTV")
+    private WebElement usernameErrorMessage;
+
+    @AndroidFindBy(id = "com.saucelabs.mydemoapp.android:id/passwordErrorTV")
+    @iOSXCUITFindBy(accessibility = "com.saucelabs.mydemoapp.android:id/passwordErrorTV")
+    private WebElement passwordErrorMessage;
+
+    @AndroidFindBy(id = "com.saucelabs.mydemoapp.android:id/passwordErrorTV")
+    @iOSXCUITFindBy(accessibility = "com.saucelabs.mydemoapp.android:id/passwordErrorTV")
+    private WebElement genericErrorMessage;
 
     public LoginPage(AppiumDriver driver) {
         super(driver);
@@ -75,11 +83,20 @@ public class LoginPage extends BasePage {
         return elementHelper.isDisplayed(productHeaderTitle);
     }
 
-    public String getErrorMessage() {
-        return elementHelper.getText(errorMessage);
+   public String getErrorMessage() {
+    if (elementHelper.isDisplayed(usernameErrorMessage)) {
+        return elementHelper.getText(usernameErrorMessage);
+    } else if (elementHelper.isDisplayed(passwordErrorMessage)) {
+        return elementHelper.getText(passwordErrorMessage);
+    } else if (elementHelper.isDisplayed(genericErrorMessage)) {
+        return elementHelper.getText(genericErrorMessage);
     }
+    return "";
+}
 
-    public boolean isErrorMessageDisplayed() {
-        return elementHelper.isDisplayed(errorMessage);
-    }
+  public boolean isErrorMessageDisplayed() {
+    return elementHelper.isDisplayed(usernameErrorMessage) || 
+           elementHelper.isDisplayed(passwordErrorMessage) || 
+           elementHelper.isDisplayed(genericErrorMessage);
+}
 }
